@@ -1,141 +1,93 @@
-/* Общие стили для всего сайта */
-* {
-  /* Устанавливаем шрифт, цвет текста и отступы по умолчанию */
-  font-family: Arial, sans-serif;
-  color: #333;
-  margin: 0;
-  padding: 0;
-}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Великий Mosley и проект Corvax WL</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+        }
 
-/* Стили для заголовка сайта */
-header {
-  /* Делаем заголовок фиксированным, чтобы он не прокручивался */
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  /* Добавляем фоновый цвет и тень */
-  background-color: #fff;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  /* Добавляем внутренний отступ и выравнивание по центру */
-  padding: 10px;
-  text-align: center;
-}
+        h1 {
+            text-align: center;
+            color: #333;
+        }
 
-/* Стили для заголовка h1 внутри header */
-header h1 {
-  /* Устанавливаем размер и жирность шрифта */
-  font-size: 24px;
-  font-weight: bold;
-  /* Добавляем нижнюю границу */
-  border-bottom: 2px solid #333;
-  /* Добавляем верхний и нижний отступ */
-  margin-top: 10px;
-  margin-bottom: 10px;
-}
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
 
-/* Стили для параграфа p внутри header */
-header p {
-  /* Устанавливаем размер и курсивность шрифта */
-  font-size: 16px;
-  font-style: italic;
-}
+        .card {
+            display: flex;
+            align-items: center;
+            background-color: #fff;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+        }
 
-/* Стили для навигационного меню nav */
-nav {
-  /* Делаем меню фиксированным, чтобы оно не прокручивалось */
-  position: fixed;
-  top: 80px;
-  left: 0;
-  width: 100%;
-  /* Добавляем фоновый цвет и тень */
-  background-color: #333;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  /* Добавляем внутренний отступ */
-  padding: 10px;
-}
+        .card-image {
+            width: 200px;
+            height: 200px;
+            object-fit: cover;
+        }
 
-/* Стили для списка ul внутри nav */
-nav ul {
-  /* Убираем маркеры списка */
-  list-style: none;
-  /* Делаем список горизонтальным */
-  display: flex;
-  /* Распределяем элементы списка по равному расстоянию */
-  justify-content: space-around;
-}
+        .card-content {
+            padding: 20px;
+        }
 
-/* Стили для ссылок a внутри nav */
-nav a {
-  /* Устанавливаем цвет и декорацию текста */
-  color: #fff;
-  text-decoration: none;
-  /* Добавляем верхний и нижний отступ */
-  padding-top: 10px;
-  padding-bottom: 10px;
-}
+        .card-title {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
 
-/* Стили для ссылок a внутри nav при наведении курсора */
-nav a:hover {
-  /* Добавляем нижнюю границу */
-  border-bottom: 2px solid #fff;
-}
+        .card-text {
+            font-size: 18px;
+            line-height: 1.5;
+        }
 
-/* Стили для основного содержимого сайта main */
-main {
-  /* Добавляем верхний отступ, чтобы не перекрывать заголовок и меню */
-  margin-top: 140px;
-  /* Добавляем внешний отступ по бокам */
-  margin-left: 20px;
-  margin-right: 20px;
-}
+        .card-link {
+            display: inline-block;
+            font-size: 16px;
+            color: #007bff;
+            text-decoration: none;
+            margin-top: 10px;
+        }
 
-/* Стили для заголовков h2 внутри main */
-main h2 {
-  /* Устанавливаем размер и жирность шрифта */
-  font-size: 20px;
-  font-weight: bold;
-  /* Добавляем верхний и нижний отступ */
-  margin-top: 20px;
-  margin-bottom: 10px;
-}
+        .card-link:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <h1>Великий Mosley и проект Corvax WL</h1>
+    <div class="container">
+        <div class="card">
+            <img src="mosley.jpg" alt="Mosley" class="card-image">
+            <div class="card-content">
+                <div class="card-title">Кто такой Mosley?</div>
+                <div class="card-text">
+                    Mosley - это британский политик, который в 1930-х годах основал и возглавил Британский союз фашистов (BUF). Он был сторонником Муссолини и Гитлера, и распространял антисемитскую пропаганду. Он был арестован во время Второй мировой войны и пытался продолжить свою политическую карьеру после войны. [^1^][1] [^2^][2] [^3^][3] [^4^][4]
+                </div>
+                <a href="^5^" class="card-link">Узнать больше об Oswald Mosley</a>
+            </div>
+        </div>
+        <div class="card">
+            <img src="corvax.jpg" alt="Corvax" class="card-image">
+            <div class="card-content">
+                <div class="card-title">Что такое Corvax WL?</div>
+                <div class="card-text">
+                    Corvax WL - это русскоязычный сервер по игре Space Station 14, которая является ремейком SS13. Это уникальная игра, которая поможет вам почувствовать РП атмосферу и настоящий ад. На сервере Corvax WL вы можете играть за разных ролей, таких как инженер, медик, ученый, охранник, клоун и многих других. [^5^][6] [^6^][7]
+                </div>
+                <a href="^1^" class="card-link">Смотреть видео про Corvax WL</a>
+                <a href="^2^" class="card-link">Посетить GitHub проекта Corvax WL</a>
+                <a href="^9^" class="card-link">Присоединиться к Discord серверу Corvax WL</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
 
-/* Стили для параграфов p внутри main */
-main p {
-  /* Устанавливаем размер и высоту строки шрифта */
-  font-size: 16px;
-  line-height: 1.5;
-  /* Добавляем нижний отступ */
-  margin-bottom: 10px;
-}
-
-/* Стили для изображений img внутри main */
-main img {
-  /* Устанавливаем максимальную ширину изображения */
-  max-width: 100%;
-  /* Добавляем рамку и скругление углов */
-  border: 2px solid #333;
-  border-radius: 10px;
-  /* Добавляем тень */
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  /* Добавляем верхний и нижний отступ */
-  margin-top: 10px;
-  margin-bottom: 10px;
-}
-
-/* Стили для подвала сайта footer */
-footer {
-  /* Добавляем фоновый цвет и тень */
-  background-color: #fff;
-  box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
-  /* Добавляем внутренний отступ и выравнивание по центру */
-  padding: 10px;
-  text-align: center;
-}
-
-/* Стили для параграфа p внутри footer */
-footer p {
-  /* Устанавливаем размер и курсивность шрифта */
-  font-size: 14px;
-  font-style: italic;
-}
