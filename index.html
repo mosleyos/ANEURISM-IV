@@ -3,28 +3,66 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Space Station 14 - Мой веб-сайт</title>
+    <title>Corvax WL - Проект по игре Space Station 14</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <!-- Проверяем, ввел ли пользователь пароль -->
+    <?php
+    // Задаем пароль для доступа к сайту
+    $password = "corvax2023";
+
+    // Если пароль не введен или неверный, показываем форму ввода пароля
+    if (!isset($_POST["password"]) || $_POST["password"] != $password) {
+    ?>
+    <div class="password-form">
+        <h1>Введите пароль для доступа к сайту</h1>
+        <form method="post" action="<?php echo $_SERVER["PHP_SELF"]; ?>">
+            <input type="password" name="password" placeholder="Пароль">
+            <input type="submit" value="Войти">
+        </form>
+    </div>
+    <?php
+    // Если пароль введен и верный, показываем содержимое сайта
+    } else {
+    ?>
     <header>
-        <h1>Space Station 14</h1>
-        <p>Мой веб-сайт по игре Space Station 14</p>
+        <h1>Corvax WL</h1>
+        <p>Проект по игре Space Station 14</p>
     </header>
     <nav>
         <ul>
             <li><a href="index.html">Главная</a></li>
-            <li><a href="about.html">О игре</a></li>
+            <li><a href="about.html">О проекте</a></li>
             <li><a href="contact.html">Контакты</a></li>
         </ul>
     </nav>
     <main>
-        <h2>Добро пожаловать на мой веб-сайт по игре Space Station 14</h2>
-        <p>Space Station 14 - это ролевая игра, в которой вы играете за члена экипажа или врага на космической станции, которая сталкивается с катастрофами, врагами и саботажем. Вы можете настраивать своего персонажа, взаимодействовать со сложными системами и выживать в хаосе в этой игре с открытым исходным кодом с сотнями обновлений.</p>
-        <img src="space-station-14.jpg" alt="Картинка игры Space Station 14">
+        <h2>Добро пожаловать на сайт проекта Corvax WL</h2>
+        <p>Corvax WL - это первый русскоязычный сервер по игре Space Station 14, целью которого является полный перевод игры на русский язык, поддержка актуальных изменений из основного репозитория, а так же добавление собственных изменений по необходимости[^1^][1].</p>
+        <img src="mos.jpg" alt="Логотип Corvax WL">
+        <h3>Администрация проекта</h3>
+        <p>Проект Corvax WL возглавляют следующие люди:</p>
+        <ul>
+            <li>Mosley - главный администратор и разработчик</li>
+            <li>Worm - администратор и переводчик</li>
+            <li>Stalker - администратор и тестировщик</li>
+        </ul>
+        <h3>Как присоединиться к проекту</h3>
+        <p>Если вы хотите поиграть на нашем сервере, вам нужно сделать следующее:</p>
+        <ol>
+            <li>Скачать игру Space Station 14 с [официального сайта](https://github.com/CorvaxStation/space-station-14-wl) или [Steam](https://www.weforum.org/agenda/2020/09/what-is-covax/).</li>
+            <li>Запустить игру и выбрать Corvax WL в списке серверов.</li>
+            <li>Создать своего персонажа и наслаждаться игрой.</li>
+        </ol>
+        <p>Если вы хотите помочь нам в разработке и переводе игры, вы можете связаться с нами через наш [Discord](https://www.who.int/ru/initiatives/act-accelerator/covax) или [GitHub](https://www.wikihow.com/Password-Protect-a-Web-Page).</p>
     </main>
     <footer>
-        <p>© 2023 Мой веб-сайт по игре Space Station 14. Все права защищены.</p>
+        <p>© 2023 Проект Corvax WL. Все права защищены.</p>
     </footer>
+    <?php
+    // Закрываем условие проверки пароля
+    }
+    ?>
 </body>
 </html>
