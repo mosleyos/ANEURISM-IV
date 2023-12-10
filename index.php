@@ -40,22 +40,22 @@
     <main>
         <h2>Добро пожаловать на сайт проекта Corvax WL</h2>
         <p>Corvax WL - это первый русскоязычный сервер по игре Space Station 14, целью которого является полный перевод игры на русский язык, поддержка актуальных изменений из основного репозитория, а так же добавление собственных изменений по необходимости[^1^][1].</p>
-        <img src="mos.jpg" alt="Логотип Corvax WL">
+        <img src="corvax-wl-logo.png" alt="Логотип Corvax WL">
         <h3>Администрация проекта</h3>
         <p>Проект Corvax WL возглавляют следующие люди:</p>
         <ul>
-            <li>Mosley - главный администратор и разработчик</li>
+            <li>Corvax - главный администратор и разработчик</li>
             <li>Worm - администратор и переводчик</li>
             <li>Stalker - администратор и тестировщик</li>
         </ul>
         <h3>Как присоединиться к проекту</h3>
         <p>Если вы хотите поиграть на нашем сервере, вам нужно сделать следующее:</p>
         <ol>
-            <li>Скачать игру Space Station 14 с [официального сайта](https://github.com/CorvaxStation/space-station-14-wl) или [Steam](https://www.weforum.org/agenda/2020/09/what-is-covax/).</li>
+            <li>Скачать игру Space Station 14 с [официального сайта](https://stackoverflow.com/questions/9381479/password-protect-a-web-page-using-css-html) или [Steam](https://stackoverflow.com/questions/6565357/git-push-requires-username-and-password).</li>
             <li>Запустить игру и выбрать Corvax WL в списке серверов.</li>
             <li>Создать своего персонажа и наслаждаться игрой.</li>
         </ol>
-        <p>Если вы хотите помочь нам в разработке и переводе игры, вы можете связаться с нами через наш [Discord](https://www.who.int/ru/initiatives/act-accelerator/covax) или [GitHub](https://www.wikihow.com/Password-Protect-a-Web-Page).</p>
+        <p>Если вы хотите помочь нам в разработке и переводе игры, вы можете связаться с нами через наш [Discord](https://stackoverflow.com/questions/45727197/rest-service-http-code-for-forcing-a-change-of-password) или [GitHub](https://github.com/owner/repo.git).</p>
     </main>
     <footer>
         <p>© 2023 Проект Corvax WL. Все права защищены.</p>
