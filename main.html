@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ANEURISM IV Wiki</title>
+    <title>ANEURISM IV Вики</title>
     <style>
         * {
             margin: 0;
@@ -33,6 +33,69 @@
                 radial-gradient(circle at 40% 40%, rgba(100, 100, 100, 0.03) 0%, transparent 50%);
             pointer-events: none;
             z-index: -1;
+        }
+
+        .custom-logo {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            width: 80px;
+            height: 80px;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.6);
+            border: 2px solid #cc4444;
+            z-index: 1000;
+            opacity: 0.9;
+            transition: all 0.3s ease;
+            background: rgba(20, 20, 25, 0.8);
+            backdrop-filter: blur(5px);
+            display: none; /* Hidden by default, will be shown when image is loaded */
+        }
+
+        .custom-logo:hover {
+            opacity: 1;
+            transform: scale(1.05);
+            box-shadow: 0 6px 25px rgba(204, 68, 68, 0.4);
+        }
+
+        .custom-logo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 6px;
+        }
+
+        .logo-upload-area {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            width: 80px;
+            height: 80px;
+            border: 2px dashed #666;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            background: rgba(40, 40, 50, 0.6);
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+
+        .logo-upload-area:hover {
+            border-color: #cc4444;
+            background: rgba(204, 68, 68, 0.1);
+        }
+
+        .logo-upload-area span {
+            color: #888;
+            font-size: 12px;
+            text-align: center;
+            pointer-events: none;
+        }
+
+        #logoInput {
+            display: none;
         }
 
         .header {
@@ -372,6 +435,14 @@
             .content-grid {
                 grid-template-columns: 1fr;
             }
+
+            .custom-logo,
+            .logo-upload-area {
+                width: 60px;
+                height: 60px;
+                top: 15px;
+                right: 15px;
+            }
         }
 
         .pulse {
@@ -393,21 +464,33 @@
     </style>
 </head>
 <body>
+    <!-- Logo Upload Area -->
+    <div class="logo-upload-area" onclick="document.getElementById('logoInput').click()">
+        <span>Добавить<br>логотип</span>
+    </div>
+    
+    <!-- Custom Logo Display -->
+    <div class="custom-logo" id="customLogo">
+        <img id="logoImg" src="" alt="Пользовательский логотип">
+    </div>
+    
+    <input type="file" id="logoInput" accept="image/png,image/jpg,image/jpeg,image/gif" onchange="handleLogoUpload(event)">
+
     <header class="header">
         <div class="header-content">
             <div class="logo pulse">
-                ⚙️ ANEURISM IV WIKI
+                ⚙️ ANEURISM IV ВИКИ
             </div>
             <nav>
                 <ul class="nav-links">
-                    <li><a href="#main">Main Page</a></li>
-                    <li><a href="#recent">Recent Changes</a></li>
-                    <li><a href="#random">Random Page</a></li>
-                    <li><a href="#help">Help</a></li>
+                    <li><a href="#main">Главная</a></li>
+                    <li><a href="#recent">Недавние изменения</a></li>
+                    <li><a href="#random">Случайная страница</a></li>
+                    <li><a href="#help">Справка</a></li>
                 </ul>
             </nav>
             <div class="search-box">
-                <input type="text" placeholder="Search the wiki..." />
+                <input type="text" placeholder="Поиск по вики..." />
                 <span style="color: #666; margin-left: 8px;">🔍</span>
             </div>
         </div>
@@ -415,141 +498,214 @@
 
     <div class="container">
         <aside class="sidebar">
-            <h3>Main</h3>
+            <h3>Основное</h3>
             <ul>
-                <li><a href="#getting-started">Getting Started & Guides</a></li>
-                <li><a href="#crafting">Crafting</a></li>
-                <li><a href="#mechanics">Gameplay Mechanics</a></li>
-                <li><a href="#fates">Fates</a></li>
-                <li><a href="#factions">Factions</a></li>
+                <li><a href="#getting-started">Начало игры и гайды</a></li>
+                <li><a href="#crafting">Крафт</a></li>
+                <li><a href="#mechanics">Игровые механики</a></li>
+                <li><a href="#fates">Судьбы</a></li>
+                <li><a href="#factions">Фракции</a></li>
             </ul>
 
-            <h3>Interactions</h3>
+            <h3>Взаимодействие</h3>
             <ul>
-                <li><a href="#activities">Activities</a></li>
-                <li><a href="#scavenging">Scavenging</a></li>
+                <li><a href="#activities">Активности</a></li>
+                <li><a href="#scavenging">Поиск ресурсов</a></li>
                 <li><a href="#dealernet">DealerNet</a></li>
-                <li><a href="#locations">Locations</a></li>
+                <li><a href="#locations">Локации</a></li>
             </ul>
 
-            <h3>Items</h3>
+            <h3>Предметы</h3>
             <ul>
-                <li><a href="#weapons">Weapons</a></li>
-                <li><a href="#materials">Materials</a></li>
-                <li><a href="#food-drink">Food & Drink</a></li>
-                <li><a href="#tools">Tools</a></li>
-                <li><a href="#contraband">Contraband</a></li>
-                <li><a href="#drugs-meds">Drugs & Meds</a></li>
+                <li><a href="#weapons">Оружие</a></li>
+                <li><a href="#materials">Материалы</a></li>
+                <li><a href="#food-drink">Еда и напитки</a></li>
+                <li><a href="#tools">Инструменты</a></li>
+                <li><a href="#contraband">Контрабанда</a></li>
+                <li><a href="#drugs-meds">Наркотики и медикаменты</a></li>
             </ul>
 
-            <h3>Other Content</h3>
+            <h3>Дополнительный контент</h3>
             <ul>
-                <li><a href="#soundtrack">Soundtrack</a></li>
-                <li><a href="#concepts">Concepts</a></li>
-                <li><a href="#fanart">Fanart</a></li>
-                <li><a href="#console-commands">Console Commands</a></li>
-                <li><a href="#server-hosting">Server Hosting</a></li>
+                <li><a href="#soundtrack">Саундтрек</a></li>
+                <li><a href="#concepts">Концепты</a></li>
+                <li><a href="#fanart">Фанарт</a></li>
+                <li><a href="#console-commands">Консольные команды</a></li>
+                <li><a href="#server-hosting">Хостинг серверов</a></li>
             </ul>
 
-            <h3>Community</h3>
+            <h3>Сообщество</h3>
             <ul>
-                <li><a href="#discord">Discord Server</a></li>
-                <li><a href="#steam">Steam Page</a></li>
-                <li><a href="#feedback">Leave Feedback</a></li>
-                <li><a href="#creators">Content Creators</a></li>
+                <li><a href="#discord">Discord сервер</a></li>
+                <li><a href="#steam">Страница в Steam</a></li>
+                <li><a href="#feedback">Оставить отзыв</a></li>
+                <li><a href="#creators">Контент-мейкеры</a></li>
             </ul>
         </aside>
 
         <main class="main-content">
             <h1 class="page-title">ANEURISM IV</h1>
-            <div class="industrial-accent">MULTIPLAYER INDUSTRIAL NIGHTMARE SIMULATOR</div>
+            <div class="industrial-accent">МНОГОПОЛЬЗОВАТЕЛЬСКИЙ СИМУЛЯТОР ИНДУСТРИАЛЬНОГО КОШМАРА</div>
 
             <div class="game-description">
-                <h2>About the Game</h2>
-                <p><strong>ANEURISM IV</strong> is an immersive multiplayer industrial nightmare simulator that plunges players into a dystopian urban hellscape. In the decaying city that shares the game's name, players must navigate a world on the verge of collapse, where survival depends on making hard choices and questionable alliances.</p>
+                <h2>Об игре</h2>
+                <p><strong>ANEURISM IV</strong> — это захватывающий многопользовательский симулятор индустриального кошмара, который погружает игроков в антиутопический городской ад. В разлагающемся городе, носящем то же название, что и игра, игроки должны выживать в мире на грани коллапса, где выживание зависит от тяжёлых решений и сомнительных союзов.</p>
                 
-                <p>In this rotting metropolis, you will be forced to discover your fate. The city demands that you pick a side, do your job, and most importantly - don't ask questions. Every decision you make ripples through the industrial nightmare that has become your reality.</p>
+                <p>В этом гниющем мегаполисе вы будете вынуждены открыть свою судьбу. Город требует от вас выбрать сторону, делать свою работу и, самое главное — не задавать вопросов. Каждое ваше решение отзывается эхом в индустриальном кошмаре, который стал вашей реальностью.</p>
             </div>
 
             <div class="warning-box">
-                <p><strong>⚠️ COGNITOHAZARD WARNING ⚠️</strong></p>
-                <p><strong>Reminder that content of this wiki may contain spoilers (COGNITOHAZARDS). Read them at your own volition.</strong></p>
+                <p><strong>⚠️ ПРЕДУПРЕЖДЕНИЕ О КОГНИТООПАСНОСТИ ⚠️</strong></p>
+                <p><strong>Напоминаем, что содержимое данной вики может содержать спойлеры (КОГНИТООПАСНОСТИ). Читайте их на свой страх и риск.</strong></p>
             </div>
 
             <div class="external-links">
-                <h3>Official Links</h3>
-                <a href="#steam-page">🎮 Official Steam Page - ANEURISM IV</a>
-                <a href="#discord-server">💬 Official ANEURISM IV RU Community Discord Server</a>
-                <p style="color: #aaa; font-style: italic; margin-top: 15px;">Meet players, content creators, leave feedback and talk to the devs!</p>
+                <h3>Официальные ссылки</h3>
+                <a href="#steam-page">🎮 Официальная страница Steam - ANEURISM IV</a>
+                <a href="#discord-server">💬 Официальный Discord сервер русского сообщества ANEURISM IV</a>
+                <p style="color: #aaa; font-style: italic; margin-top: 15px;">Встречайтесь с игроками, контент-мейкерами, оставляйте отзывы и общайтесь с разработчиками!</p>
             </div>
 
             <div class="content-section">
-                <h2>The World</h2>
-                <p>From the industrious <strong>Prole</strong> to the wealthy <strong>Banker</strong>, each role offers unique experiences, challenges, and rewards. Your chosen fate defines your journey, abilities, and how you interact with others in this decaying urban landscape.</p>
+                <h2>Мир игры</h2>
+                <p>От трудолюбивого <strong>Пролетария</strong> до богатого <strong>Банкира</strong> — каждая роль предлагает уникальный опыт, вызовы и награды. Ваша выбранная судьба определяет ваше путешествие, способности и то, как вы взаимодействуете с другими в этом разлагающемся городском ландшафте.</p>
                 
-                <p>Players must choose their allegiance carefully. Align with the <strong>Cortex</strong> to stabilize the city and maintain what little order remains, or join the ranks of the <strong>Scumbags</strong> and <strong>Zealots</strong> to spread Rot and accelerate the city's descent into chaos.</p>
+                <p>Игроки должны осторожно выбирать свою преданность. Присоединитесь к <strong>Кортексу</strong>, чтобы стабилизировать город и поддержать то немногое, что осталось от порядка, или вступите в ряды <strong>Отбросов</strong> и <strong>Фанатиков</strong>, чтобы распространить Гниль и ускорить погружение города в хаос.</p>
                 
-                <p>The fate of ANEURISM IV hangs in the balance, influenced by your actions and alliances. Every choice carries weight in this industrial nightmare where survival is never guaranteed.</p>
+                <p>Судьба ANEURISM IV висит на волоске, и на неё влияют ваши действия и союзы. Каждый выбор имеет вес в этом индустриальном кошмаре, где выживание никогда не гарантировано.</p>
             </div>
 
             <div class="content-grid">
                 <div class="content-card">
-                    <h3>Main Content</h3>
+                    <h3>Основной контент</h3>
                     <ul>
-                        <li><a href="#getting-started">Getting Started & Guides</a></li>
-                        <li><a href="#crafting">Crafting</a></li>
-                        <li><a href="#mechanics">Gameplay Mechanics</a></li>
-                        <li><a href="#fates">Fates</a></li>
-                        <li><a href="#factions">Factions</a></li>
+                        <li><a href="#getting-started">Начало игры и гайды</a></li>
+                        <li><a href="#crafting">Крафт</a></li>
+                        <li><a href="#mechanics">Игровые механики</a></li>
+                        <li><a href="#fates">Судьбы</a></li>
+                        <li><a href="#factions">Фракции</a></li>
                     </ul>
                 </div>
 
                 <div class="content-card">
-                    <h3>Interactions</h3>
+                    <h3>Взаимодействие</h3>
                     <ul>
-                        <li><a href="#activities">Activities</a></li>
-                        <li><a href="#scavenging">Scavenging</a></li>
+                        <li><a href="#activities">Активности</a></li>
+                        <li><a href="#scavenging">Поиск ресурсов</a></li>
                         <li><a href="#dealernet">DealerNet</a></li>
-                        <li><a href="#locations">Locations</a></li>
+                        <li><a href="#locations">Локации</a></li>
                     </ul>
                 </div>
 
                 <div class="content-card">
-                    <h3>Items & Equipment</h3>
+                    <h3>Предметы и снаряжение</h3>
                     <ul>
-                        <li><a href="#weapons">Weapons</a></li>
-                        <li><a href="#materials">Materials</a></li>
-                        <li><a href="#food-drink">Food & Drink</a></li>
-                        <li><a href="#tools">Tools</a></li>
-                        <li><a href="#contraband">Contraband</a></li>
-                        <li><a href="#drugs-meds">Drugs & Meds</a></li>
+                        <li><a href="#weapons">Оружие</a></li>
+                        <li><a href="#materials">Материалы</a></li>
+                        <li><a href="#food-drink">Еда и напитки</a></li>
+                        <li><a href="#tools">Инструменты</a></li>
+                        <li><a href="#contraband">Контрабанда</a></li>
+                        <li><a href="#drugs-meds">Наркотики и медикаменты</a></li>
                     </ul>
                 </div>
 
                 <div class="content-card">
-                    <h3>Other Content</h3>
+                    <h3>Дополнительный контент</h3>
                     <ul>
-                        <li><a href="#soundtrack">Soundtrack</a></li>
-                        <li><a href="#concepts">Concepts</a></li>
-                        <li><a href="#fanart">Fanart</a></li>
-                        <li><a href="#console-commands">Console Commands</a></li>
-                        <li><a href="#server-hosting">Server Hosting</a></li>
+                        <li><a href="#soundtrack">Саундтрек</a></li>
+                        <li><a href="#concepts">Концепты</a></li>
+                        <li><a href="#fanart">Фанарт</a></li>
+                        <li><a href="#console-commands">Консольные команды</a></li>
+                        <li><a href="#server-hosting">Хостинг серверов</a></li>
                     </ul>
                 </div>
             </div>
 
             <div class="content-section">
-                <h2>Key Features</h2>
-                <p>ANEURISM IV offers a unique multiplayer experience where player choices shape the world around them. The industrial nightmare setting creates an atmosphere of constant tension and uncertainty, where alliances shift and survival depends on adaptability.</p>
+                <h2>Ключевые особенности</h2>
+                <p>ANEURISM IV предлагает уникальный многопользовательский опыт, где выбор игроков формирует мир вокруг них. Атмосфера индустриального кошмара создаёт ощущение постоянного напряжения и неопределённости, где союзы меняются, а выживание зависит от способности адаптироваться.</p>
                 
-                <p>Whether you choose to work within the system as a loyal Prole or challenge it as a member of the underground resistance, your fate is intertwined with the city's destiny. The question remains: will you help stabilize the crumbling infrastructure, or will you contribute to its inevitable collapse?</p>
+                <p>Независимо от того, выберете ли вы работать в системе как верный Пролетарий или бросите ей вызов как член подпольного сопротивления, ваша судьба переплетена с судьбой города. Вопрос остаётся: поможете ли вы стабилизировать рушащуюся инфраструктуру или поспособствуете её неизбежному краху?</p>
             </div>
         </main>
     </div>
 
     <footer class="footer">
-        <p>&copy; 2025 ANEURISM IV Wiki. Content may contain cognitohazards - proceed with caution.</p>
-        <p>Last modified: June 23, 2025 | <a href="#privacy" style="color: #666;">Privacy Policy</a> | <a href="#terms" style="color: #666;">Terms of Use</a></p>
+        <p>&copy; 2025 ANEURISM IV Вики. Контент может содержать когнитоопасности — действуйте осторожно.</p>
+        <p>Последнее изменение: 23 июня 2025 | <a href="#privacy" style="color: #666;">Политика конфиденциальности</a> | <a href="#terms" style="color: #666;">Условия использования</a></p>
     </footer>
+
+    <script>
+        function handleLogoUpload(event) {
+            const file = event.target.files[0];
+            if (file) {
+                // Check if file is an image
+                if (!file.type.startsWith('image/')) {
+                    alert('Пожалуйста, выберите файл изображения (PNG, JPG, GIF)');
+                    return;
+                }
+
+                // Check file size (limit to 5MB)
+                if (file.size > 5 * 1024 * 1024) {
+                    alert('Размер файла не должен превышать 5МБ');
+                    return;
+                }
+
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    const logoImg = document.getElementById('logoImg');
+                    const customLogo = document.getElementById('customLogo');
+                    const uploadArea = document.querySelector('.logo-upload-area');
+                    
+                    logoImg.src = e.target.result;
+                    customLogo.style.display = 'block';
+                    uploadArea.style.display = 'none';
+                    
+                    // Save to localStorage for persistence
+                    try {
+                        localStorage.setItem('customLogo', e.target.result);
+                    } catch (err) {
+                        console.log('Не удалось сохранить логотип в localStorage');
+                    }
+                };
+                reader.readAsDataURL(file);
+            }
+        }
+
+        // Load saved logo on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            try {
+                const savedLogo = localStorage.getItem('customLogo');
+                if (savedLogo) {
+                    const logoImg = document.getElementById('logoImg');
+                    const customLogo = document.getElementById('customLogo');
+                    const uploadArea = document.querySelector('.logo-upload-area');
+                    
+                    logoImg.src = savedLogo;
+                    customLogo.style.display = 'block';
+                    uploadArea.style.display = 'none';
+                }
+            } catch (err) {
+                console.log('Не удалось загрузить сохранённый логотип');
+            }
+        });
+
+        // Add click to remove logo functionality
+        document.getElementById('customLogo').addEventListener('dblclick', function() {
+            if (confirm('Удалить логотип?')) {
+                const customLogo = document.getElementById('customLogo');
+                const uploadArea = document.querySelector('.logo-upload-area');
+                
+                customLogo.style.display = 'none';
+                uploadArea.style.display = 'flex';
+                
+                try {
+                    localStorage.removeItem('customLogo');
+                } catch (err) {
+                    console.log('Не удалось удалить логотип из localStorage');
+                }
+            }
+        });
+    </script>
 </body>
 </html>
