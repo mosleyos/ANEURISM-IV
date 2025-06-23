@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ANEURISM IV Wiki</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #0a0a0a 0%, #151515 50%, #080808 100%);
+            color: #c9c9c9;
+            min-height: 100vh;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                radial-gradient(circle at 20% 80%, rgba(150, 50, 50, 0.08) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(50, 50, 150, 0.06) 0%, transparent 50%),
+                radial-gradient(circle at 40% 40%, rgba(100, 100, 100, 0.03) 0%, transparent 50%);
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .header {
+            background: linear-gradient(to bottom, rgba(20, 20, 25, 0.95), rgba(15, 15, 20, 0.98));
+            border-bottom: 2px solid #444;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(10px);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 15px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: bold;
+            color: #cc4444;
+            text-shadow: 0 0 15px rgba(204, 68, 68, 0.6);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            letter-spacing: 2px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: #bbb;
+            text-decoration: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+            border: 1px solid transparent;
+        }
+
+        .nav-links a:hover {
+            color: #cc4444;
+            background: rgba(204, 68, 68, 0.1);
+            border-color: #cc4444;
+            box-shadow: 0 0 15px rgba(204, 68, 68, 0.3);
+        }
+
+        .search-box {
+            display: flex;
+            align-items: center;
+            background: rgba(40, 40, 50, 0.8);
+            border: 1px solid #555;
+            border-radius: 25px;
+            padding: 8px 15px;
+            transition: all 0.3s ease;
+        }
+
+        .search-box:focus-within {
+            border-color: #cc4444;
+            box-shadow: 0 0 15px rgba(204, 68, 68, 0.3);
+        }
+
+        .search-box input {
+            background: none;
+            border: none;
+            color: #ccc;
+            outline: none;
+            padding: 5px;
+            width: 200px;
+        }
+
+        .search-box input::placeholder {
+            color: #777;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            display: grid;
+            grid-template-columns: 280px 1fr;
+            gap: 30px;
+            min-height: calc(100vh - 80px);
+        }
+
+        .sidebar {
+            background: linear-gradient(to bottom, rgba(25, 25, 30, 0.9), rgba(20, 20, 25, 0.95));
+            border: 1px solid #444;
+            border-radius: 10px;
+            padding: 20px;
+            height: fit-content;
+            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(5px);
+        }
+
+        .sidebar h3 {
+            color: #cc4444;
+            margin-bottom: 15px;
+            font-size: 16px;
+            text-shadow: 0 0 8px rgba(204, 68, 68, 0.4);
+            border-bottom: 1px solid #555;
+            padding-bottom: 8px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .sidebar ul {
+            list-style: none;
+            margin-bottom: 25px;
+        }
+
+        .sidebar li {
+            margin-bottom: 6px;
+        }
+
+        .sidebar a {
+            color: #aaa;
+            text-decoration: none;
+            padding: 6px 12px;
+            display: block;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+            font-size: 14px;
+        }
+
+        .sidebar a:hover {
+            color: #cc4444;
+            background: rgba(204, 68, 68, 0.1);
+            padding-left: 18px;
+            box-shadow: inset 3px 0 0 #cc4444;
+        }
+
+        .main-content {
+            background: linear-gradient(to bottom, rgba(25, 25, 30, 0.9), rgba(20, 20, 25, 0.95));
+            border: 1px solid #444;
+            border-radius: 10px;
+            padding: 40px;
+            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(5px);
+        }
+
+        .page-title {
+            color: #cc4444;
+            font-size: 36px;
+            margin-bottom: 20px;
+            text-shadow: 0 0 15px rgba(204, 68, 68, 0.4);
+            border-bottom: 2px solid #555;
+            padding-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+        }
+
+        .game-description {
+            background: linear-gradient(135deg, rgba(50, 25, 25, 0.3), rgba(25, 25, 50, 0.2));
+            border: 1px solid #666;
+            border-radius: 8px;
+            padding: 25px;
+            margin: 25px 0;
+            box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .game-description h2 {
+            color: #cc4444;
+            font-size: 24px;
+            margin-bottom: 15px;
+            text-shadow: 0 0 10px rgba(204, 68, 68, 0.4);
+        }
+
+        .game-description p {
+            line-height: 1.8;
+            margin-bottom: 15px;
+            color: #ccc;
+            font-size: 16px;
+        }
+
+        .warning-box {
+            background: linear-gradient(135deg, rgba(150, 50, 50, 0.2), rgba(100, 20, 20, 0.3));
+            border: 2px solid #cc4444;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 25px 0;
+            box-shadow: 0 0 20px rgba(204, 68, 68, 0.2);
+        }
+
+        .warning-box strong {
+            color: #ff6666;
+            text-shadow: 0 0 5px rgba(255, 102, 102, 0.5);
+        }
+
+        .content-section {
+            margin-bottom: 35px;
+        }
+
+        .content-section h2 {
+            color: #cc4444;
+            font-size: 28px;
+            margin-bottom: 20px;
+            text-shadow: 0 0 10px rgba(204, 68, 68, 0.3);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .content-section p {
+            line-height: 1.8;
+            margin-bottom: 15px;
+            color: #bbb;
+            font-size: 16px;
+        }
+
+        .content-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin: 25px 0;
+        }
+
+        .content-card {
+            background: linear-gradient(135deg, rgba(40, 40, 50, 0.6), rgba(30, 30, 40, 0.8));
+            border: 1px solid #555;
+            border-radius: 8px;
+            padding: 20px;
+            transition: all 0.3s ease;
+            box-shadow: 0 3px 15px rgba(0, 0, 0, 0.4);
+        }
+
+        .content-card:hover {
+            border-color: #cc4444;
+            box-shadow: 0 5px 25px rgba(204, 68, 68, 0.2);
+            transform: translateY(-2px);
+        }
+
+        .content-card h3 {
+            color: #cc4444;
+            margin-bottom: 15px;
+            font-size: 20px;
+            text-shadow: 0 0 5px rgba(204, 68, 68, 0.3);
+        }
+
+        .content-card ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .content-card li {
+            margin-bottom: 8px;
+            padding: 5px 0;
+            border-bottom: 1px solid #333;
+        }
+
+        .content-card li:last-child {
+            border-bottom: none;
+        }
+
+        .content-card a {
+            color: #aaa;
+            text-decoration: none;
+            transition: color 0.3s ease;
+            display: block;
+            padding: 5px 10px;
+            border-radius: 4px;
+        }
+
+        .content-card a:hover {
+            color: #cc4444;
+            background: rgba(204, 68, 68, 0.1);
+            padding-left: 15px;
+        }
+
+        .external-links {
+            background: linear-gradient(135deg, rgba(40, 40, 60, 0.4), rgba(30, 30, 50, 0.6));
+            border: 1px solid #666;
+            border-radius: 8px;
+            padding: 25px;
+            margin: 30px 0;
+        }
+
+        .external-links h3 {
+            color: #cc4444;
+            margin-bottom: 15px;
+            text-shadow: 0 0 8px rgba(204, 68, 68, 0.4);
+        }
+
+        .external-links a {
+            color: #88ccff;
+            text-decoration: none;
+            display: block;
+            margin: 10px 0;
+            padding: 10px 15px;
+            background: rgba(50, 50, 70, 0.3);
+            border-radius: 5px;
+            border: 1px solid #666;
+            transition: all 0.3s ease;
+        }
+
+        .external-links a:hover {
+            color: #aaddff;
+            background: rgba(136, 204, 255, 0.1);
+            border-color: #88ccff;
+            box-shadow: 0 0 15px rgba(136, 204, 255, 0.2);
+        }
+
+        .footer {
+            background: linear-gradient(to top, rgba(10, 10, 15, 0.95), rgba(15, 15, 20, 0.9));
+            border-top: 1px solid #444;
+            padding: 30px 20px;
+            margin-top: 50px;
+            text-align: center;
+            color: #666;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .header-content {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .nav-links {
+                gap: 15px;
+            }
+            
+            .search-box input {
+                width: 150px;
+            }
+            
+            .content-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .pulse {
+            animation: pulse 3s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { text-shadow: 0 0 15px rgba(204, 68, 68, 0.4); }
+            50% { text-shadow: 0 0 25px rgba(204, 68, 68, 0.8); }
+        }
+
+        .industrial-accent {
+            color: #999;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="header-content">
+            <div class="logo pulse">
+                ⚙️ ANEURISM IV WIKI
+            </div>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="#main">Main Page</a></li>
+                    <li><a href="#recent">Recent Changes</a></li>
+                    <li><a href="#random">Random Page</a></li>
+                    <li><a href="#help">Help</a></li>
+                </ul>
+            </nav>
+            <div class="search-box">
+                <input type="text" placeholder="Search the wiki..." />
+                <span style="color: #666; margin-left: 8px;">🔍</span>
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+        <aside class="sidebar">
+            <h3>Main</h3>
+            <ul>
+                <li><a href="#getting-started">Getting Started & Guides</a></li>
+                <li><a href="#crafting">Crafting</a></li>
+                <li><a href="#mechanics">Gameplay Mechanics</a></li>
+                <li><a href="#fates">Fates</a></li>
+                <li><a href="#factions">Factions</a></li>
+            </ul>
+
+            <h3>Interactions</h3>
+            <ul>
+                <li><a href="#activities">Activities</a></li>
+                <li><a href="#scavenging">Scavenging</a></li>
+                <li><a href="#dealernet">DealerNet</a></li>
+                <li><a href="#locations">Locations</a></li>
+            </ul>
+
+            <h3>Items</h3>
+            <ul>
+                <li><a href="#weapons">Weapons</a></li>
+                <li><a href="#materials">Materials</a></li>
+                <li><a href="#food-drink">Food & Drink</a></li>
+                <li><a href="#tools">Tools</a></li>
+                <li><a href="#contraband">Contraband</a></li>
+                <li><a href="#drugs-meds">Drugs & Meds</a></li>
+            </ul>
+
+            <h3>Other Content</h3>
+            <ul>
+                <li><a href="#soundtrack">Soundtrack</a></li>
+                <li><a href="#concepts">Concepts</a></li>
+                <li><a href="#fanart">Fanart</a></li>
+                <li><a href="#console-commands">Console Commands</a></li>
+                <li><a href="#server-hosting">Server Hosting</a></li>
+            </ul>
+
+            <h3>Community</h3>
+            <ul>
+                <li><a href="#discord">Discord Server</a></li>
+                <li><a href="#steam">Steam Page</a></li>
+                <li><a href="#feedback">Leave Feedback</a></li>
+                <li><a href="#creators">Content Creators</a></li>
+            </ul>
+        </aside>
+
+        <main class="main-content">
+            <h1 class="page-title">ANEURISM IV</h1>
+            <div class="industrial-accent">MULTIPLAYER INDUSTRIAL NIGHTMARE SIMULATOR</div>
+
+            <div class="game-description">
+                <h2>About the Game</h2>
+                <p><strong>ANEURISM IV</strong> is an immersive multiplayer industrial nightmare simulator that plunges players into a dystopian urban hellscape. In the decaying city that shares the game's name, players must navigate a world on the verge of collapse, where survival depends on making hard choices and questionable alliances.</p>
+                
+                <p>In this rotting metropolis, you will be forced to discover your fate. The city demands that you pick a side, do your job, and most importantly - don't ask questions. Every decision you make ripples through the industrial nightmare that has become your reality.</p>
+            </div>
+
+            <div class="warning-box">
+                <p><strong>⚠️ COGNITOHAZARD WARNING ⚠️</strong></p>
+                <p><strong>Reminder that content of this wiki may contain spoilers (COGNITOHAZARDS). Read them at your own volition.</strong></p>
+            </div>
+
+            <div class="external-links">
+                <h3>Official Links</h3>
+                <a href="#steam-page">🎮 Official Steam Page - ANEURISM IV</a>
+                <a href="#discord-server">💬 Official ANEURISM IV RU Community Discord Server</a>
+                <p style="color: #aaa; font-style: italic; margin-top: 15px;">Meet players, content creators, leave feedback and talk to the devs!</p>
+            </div>
+
+            <div class="content-section">
+                <h2>The World</h2>
+                <p>From the industrious <strong>Prole</strong> to the wealthy <strong>Banker</strong>, each role offers unique experiences, challenges, and rewards. Your chosen fate defines your journey, abilities, and how you interact with others in this decaying urban landscape.</p>
+                
+                <p>Players must choose their allegiance carefully. Align with the <strong>Cortex</strong> to stabilize the city and maintain what little order remains, or join the ranks of the <strong>Scumbags</strong> and <strong>Zealots</strong> to spread Rot and accelerate the city's descent into chaos.</p>
+                
+                <p>The fate of ANEURISM IV hangs in the balance, influenced by your actions and alliances. Every choice carries weight in this industrial nightmare where survival is never guaranteed.</p>
+            </div>
+
+            <div class="content-grid">
+                <div class="content-card">
+                    <h3>Main Content</h3>
+                    <ul>
+                        <li><a href="#getting-started">Getting Started & Guides</a></li>
+                        <li><a href="#crafting">Crafting</a></li>
+                        <li><a href="#mechanics">Gameplay Mechanics</a></li>
+                        <li><a href="#fates">Fates</a></li>
+                        <li><a href="#factions">Factions</a></li>
+                    </ul>
+                </div>
+
+                <div class="content-card">
+                    <h3>Interactions</h3>
+                    <ul>
+                        <li><a href="#activities">Activities</a></li>
+                        <li><a href="#scavenging">Scavenging</a></li>
+                        <li><a href="#dealernet">DealerNet</a></li>
+                        <li><a href="#locations">Locations</a></li>
+                    </ul>
+                </div>
+
+                <div class="content-card">
+                    <h3>Items & Equipment</h3>
+                    <ul>
+                        <li><a href="#weapons">Weapons</a></li>
+                        <li><a href="#materials">Materials</a></li>
+                        <li><a href="#food-drink">Food & Drink</a></li>
+                        <li><a href="#tools">Tools</a></li>
+                        <li><a href="#contraband">Contraband</a></li>
+                        <li><a href="#drugs-meds">Drugs & Meds</a></li>
+                    </ul>
+                </div>
+
+                <div class="content-card">
+                    <h3>Other Content</h3>
+                    <ul>
+                        <li><a href="#soundtrack">Soundtrack</a></li>
+                        <li><a href="#concepts">Concepts</a></li>
+                        <li><a href="#fanart">Fanart</a></li>
+                        <li><a href="#console-commands">Console Commands</a></li>
+                        <li><a href="#server-hosting">Server Hosting</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="content-section">
+                <h2>Key Features</h2>
+                <p>ANEURISM IV offers a unique multiplayer experience where player choices shape the world around them. The industrial nightmare setting creates an atmosphere of constant tension and uncertainty, where alliances shift and survival depends on adaptability.</p>
+                
+                <p>Whether you choose to work within the system as a loyal Prole or challenge it as a member of the underground resistance, your fate is intertwined with the city's destiny. The question remains: will you help stabilize the crumbling infrastructure, or will you contribute to its inevitable collapse?</p>
+            </div>
+        </main>
+    </div>
+
+    <footer class="footer">
+        <p>&copy; 2025 ANEURISM IV Wiki. Content may contain cognitohazards - proceed with caution.</p>
+        <p>Last modified: June 23, 2025 | <a href="#privacy" style="color: #666;">Privacy Policy</a> | <a href="#terms" style="color: #666;">Terms of Use</a></p>
+    </footer>
+</body>
+</html>
