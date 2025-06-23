@@ -529,9 +529,9 @@
             <ul>
                 <li><a href="#soundtrack">Саундтрек</a></li>
                 <li><a href="#concepts">Концепты</a></li>
-                <li><a href="#fanart">Фанарт</a></li>
+                <li><a href="#fanart">Фанарты</a></li>
                 <li><a href="#console-commands">Консольные команды</a></li>
-                <li><a href="#server-hosting">Хостинг серверов</a></li>
+                <li><a href="#server-hosting">Хостинг сервера</a></li>
             </ul>
 
             <h3>Сообщество</h3>
@@ -568,11 +568,11 @@
 
             <div class="content-section">
                 <h2>Мир игры</h2>
-                <p>От трудолюбивого <strong>Пролетария</strong> до богатого <strong>Банкира</strong> — каждая роль предлагает уникальный опыт, вызовы и награды. Ваша выбранная судьба определяет ваше путешествие, способности и то, как вы взаимодействуете с другими в этом разлагающемся городском ландшафте.</p>
+                <p>От трудолюбивого <strong>Прола</strong> до богатого <strong>Банкира</strong> — каждая роль предлагает уникальный опыт, вызовы и награды. Ваша выбранная судьба определяет ваше путешествие, способности и то, как вы взаимодействуете с другими в этом разлагающемся городском ландшафте.</p>
                 
                 <p>Игроки должны осторожно выбирать свою преданность. Присоединитесь к <strong>Кортексу</strong>, чтобы стабилизировать город и поддержать то немногое, что осталось от порядка, или вступите в ряды <strong>Отбросов</strong> и <strong>Фанатиков</strong>, чтобы распространить Гниль и ускорить погружение города в хаос.</p>
                 
-                <p>Судьба ANEURISM IV висит на волоске, и на неё влияют ваши действия и союзы. Каждый выбор имеет вес в этом индустриальном кошмаре, где выживание никогда не гарантировано.</p>
+                <p>Судьба города висит на волоске, и на неё влияют ваши действия и союзы. Каждый выбор имеет вес в этом индустриальном кошмаре, где выживание никогда не гарантировано.</p>
             </div>
 
             <div class="content-grid">
@@ -625,7 +625,7 @@
                 <h2>Ключевые особенности</h2>
                 <p>ANEURISM IV предлагает уникальный многопользовательский опыт, где выбор игроков формирует мир вокруг них. Атмосфера индустриального кошмара создаёт ощущение постоянного напряжения и неопределённости, где союзы меняются, а выживание зависит от способности адаптироваться.</p>
                 
-                <p>Независимо от того, выберете ли вы работать в системе как верный Пролетарий или бросите ей вызов как член подпольного сопротивления, ваша судьба переплетена с судьбой города. Вопрос остаётся: поможете ли вы стабилизировать рушащуюся инфраструктуру или поспособствуете её неизбежному краху?</p>
+                <p>Независимо от того, выберете ли вы работать в системе как верный Прол или бросите ей вызов как член подпольного сопротивления, ваша судьба переплетена с судьбой города. Вопрос остаётся: поможете ли вы стабилизировать рушащуюся инфраструктуру или поспособствуете её неизбежному краху?</p>
             </div>
         </main>
     </div>
@@ -634,78 +634,5 @@
         <p>&copy; 2025 ANEURISM IV Вики. Контент может содержать когнитоопасности — действуйте осторожно.</p>
         <p>Последнее изменение: 23 июня 2025 | <a href="#privacy" style="color: #666;">Политика конфиденциальности</a> | <a href="#terms" style="color: #666;">Условия использования</a></p>
     </footer>
-
-    <script>
-        function handleLogoUpload(event) {
-            const file = event.target.files[0];
-            if (file) {
-                // Check if file is an image
-                if (!file.type.startsWith('image/')) {
-                    alert('Пожалуйста, выберите файл изображения (PNG, JPG, GIF)');
-                    return;
-                }
-
-                // Check file size (limit to 5MB)
-                if (file.size > 5 * 1024 * 1024) {
-                    alert('Размер файла не должен превышать 5МБ');
-                    return;
-                }
-
-                const reader = new FileReader();
-                reader.onload = function(e) {
-                    const logoImg = document.getElementById('logoImg');
-                    const customLogo = document.getElementById('customLogo');
-                    const uploadArea = document.querySelector('.logo-upload-area');
-                    
-                    logoImg.src = e.target.result;
-                    customLogo.style.display = 'block';
-                    uploadArea.style.display = 'none';
-                    
-                    // Save to localStorage for persistence
-                    try {
-                        localStorage.setItem('customLogo', e.target.result);
-                    } catch (err) {
-                        console.log('Не удалось сохранить логотип в localStorage');
-                    }
-                };
-                reader.readAsDataURL(file);
-            }
-        }
-
-        // Load saved logo on page load
-        document.addEventListener('DOMContentLoaded', function() {
-            try {
-                const savedLogo = localStorage.getItem('customLogo');
-                if (savedLogo) {
-                    const logoImg = document.getElementById('logoImg');
-                    const customLogo = document.getElementById('customLogo');
-                    const uploadArea = document.querySelector('.logo-upload-area');
-                    
-                    logoImg.src = savedLogo;
-                    customLogo.style.display = 'block';
-                    uploadArea.style.display = 'none';
-                }
-            } catch (err) {
-                console.log('Не удалось загрузить сохранённый логотип');
-            }
-        });
-
-        // Add click to remove logo functionality
-        document.getElementById('customLogo').addEventListener('dblclick', function() {
-            if (confirm('Удалить логотип?')) {
-                const customLogo = document.getElementById('customLogo');
-                const uploadArea = document.querySelector('.logo-upload-area');
-                
-                customLogo.style.display = 'none';
-                uploadArea.style.display = 'flex';
-                
-                try {
-                    localStorage.removeItem('customLogo');
-                } catch (err) {
-                    console.log('Не удалось удалить логотип из localStorage');
-                }
-            }
-        });
-    </script>
 </body>
 </html>
